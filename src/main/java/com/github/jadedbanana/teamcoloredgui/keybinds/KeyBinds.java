@@ -1,19 +1,27 @@
 package com.github.jadedbanana.teamcoloredgui.keybinds;
 
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.client.MinecraftClient;
 
 public class KeyBinds {
 
     private KeyBinding[] keyBinding;
+    private KeyEvents keyEvents;
 
 
     /*
     Constructor.
      */
     public KeyBinds() {
+        // Initialize key bindings
         this.keyBinding = new KeyBinding[2];
         this.setKeybinds();
+
+        // Initialize key events
+        this.keyEvents = new KeyEvents(this.keyBinding);
+        ClientTickEvents.END_CLIENT_TICK.register(client -> this.keyEvents.KeyBindsEvents(client));
     }
 
 
