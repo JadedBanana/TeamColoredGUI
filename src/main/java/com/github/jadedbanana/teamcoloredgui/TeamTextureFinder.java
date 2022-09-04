@@ -27,8 +27,8 @@ public class TeamTextureFinder {
         for (int i = 0; i < formattingColors.length; i++) {
             if (formattingColors[i].getColorIndex() != -1) {
                 COLORS[i] = formattingColors[i].getColorValue();
-                WIDGETS[i] = new Identifier(
-                        "textures/gui/team/" + formattingColors[i].getName().toLowerCase() + "_widgets.png");
+                WIDGETS[i] = new Identifier("teamcoloredgui",
+                        "textures/" + formattingColors[i].getName().toLowerCase() + "_widgets.png");
             }
         }
     }
