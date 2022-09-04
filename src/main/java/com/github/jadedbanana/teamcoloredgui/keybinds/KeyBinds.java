@@ -7,8 +7,8 @@ import net.minecraft.client.MinecraftClient;
 
 public class KeyBinds {
 
-    private KeyBinding[] keyBinding;
-    private KeyEvents keyEvents;
+    private final KeyBinding[] keyBinding;
+    private final KeyEvents keyEvents;
 
 
     /*

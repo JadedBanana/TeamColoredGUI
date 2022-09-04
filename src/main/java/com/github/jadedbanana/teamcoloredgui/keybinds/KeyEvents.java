@@ -6,7 +6,7 @@ import net.minecraft.client.option.KeyBinding;
 
 public class KeyEvents {
 
-    private KeyBinding[] keyBinds;
+    private final KeyBinding[] keyBinds;
 
     /*
     Constructor.
