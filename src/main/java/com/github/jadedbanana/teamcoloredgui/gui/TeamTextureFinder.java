@@ -1,4 +1,4 @@
-package com.github.jadedbanana.teamcoloredgui;
+package com.github.jadedbanana.teamcoloredgui.gui;
 
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.util.Identifier;

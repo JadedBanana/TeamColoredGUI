@@ -1,6 +1,6 @@
 package com.github.jadedbanana.teamcoloredgui.mixin;
 
-import com.github.jadedbanana.teamcoloredgui.TeamTextureFinder;
+import com.github.jadedbanana.teamcoloredgui.gui.TeamTextureFinder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;
