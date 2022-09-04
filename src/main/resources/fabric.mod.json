@@ -19,11 +19,11 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.jadedbanana.teamcoloredgui.Initializer"
+      "com.github.jadedbanana.teamcoloredgui.TeamColoredGUI"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "teamcoloredgui.mixins.json"
   ],
 
   "depends": {
