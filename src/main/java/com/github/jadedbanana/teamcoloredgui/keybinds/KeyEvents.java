@@ -1,7 +1,10 @@
 package com.github.jadedbanana.teamcoloredgui.keybinds;
 
 import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
+import com.github.jadedbanana.teamcoloredgui.config.screens.OuterConfigMenu;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.TitleScreen;
+import net.minecraft.client.gui.screen.option.OptionsScreen;
 import net.minecraft.client.option.KeyBinding;
 
 public class KeyEvents {
@@ -20,7 +23,7 @@ public class KeyEvents {
     public void KeyBindsEvents(final MinecraftClient client) {
         // Keybind 0 (Open config)
         if (this.keyBinds[0].wasPressed()) {
-            TeamColoredGUI.LOGGER.info("OPEN CONFIG");
+            TeamColoredGUI.LOGGER.info("MENU");
 
         }
 

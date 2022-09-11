@@ -1,5 +1,6 @@
 package com.github.jadedbanana.teamcoloredgui.gui;
 
+import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Formatting;
@@ -27,6 +28,7 @@ public class TeamTextureFinder {
         for (int i = 0; i < formattingColors.length; i++) {
             if (formattingColors[i].getColorIndex() != -1) {
                 COLORS[i] = formattingColors[i].getColorValue();
+                TeamColoredGUI.LOGGER.info("" + formattingColors[i].getName().toLowerCase());
                 WIDGETS[i] = new Identifier("teamcoloredgui",
                         "textures/" + formattingColors[i].getName().toLowerCase() + "_widgets.png");
             }
@@ -50,6 +52,10 @@ public class TeamTextureFinder {
     private static Identifier getTexture(AbstractTeam scoreboardTeam, Identifier[] textures) {
         // Get team color
         Integer teamColor = scoreboardTeam.getColor().getColorValue();
+
+        // If null, return null
+        if (teamColor == null)
+            return null;
 
         // Iterate through team colors, and if team found, return that team's texture
         for (int i = 0; i < COLORS.length; i++)
