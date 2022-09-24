@@ -1,5 +1,6 @@
 package com.github.jadedbanana.teamcoloredgui.mixin;
 
+import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
 import com.github.jadedbanana.teamcoloredgui.gui.TeamTextureFinder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.hud.InGameHud;
@@ -31,6 +32,13 @@ public abstract class InGameHudMixin {
 			target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V")
 	)
 	private void redirectSetShaderTexture_renderHotbar(int texture, Identifier id) {
+		// Only run this method if the mod is enabled AND the widget recolor is enabled.
+		// If not, just do the normal intended call.
+		if (!TeamColoredGUI.CONFIG.ENABLED) {
+			RenderSystem.setShaderTexture(texture, id);
+			return;
+		}
+
 		// Custom texture injection only occurs if player is on a team AND the team color isn't null.
 		Identifier new_id = null;
 
