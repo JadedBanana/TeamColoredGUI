@@ -1,6 +1,6 @@
-package com.github.jadedbanana.teamcoloredgui.gui;
+package com.github.jadedbanana.teamindicatorsplus.gui;
 
-import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Formatting;
@@ -28,8 +28,8 @@ public class TeamTextureFinder {
         for (int i = 0; i < formattingColors.length; i++) {
             if (formattingColors[i].getColorIndex() != -1) {
                 COLORS[i] = formattingColors[i].getColorValue();
-                TeamColoredGUI.LOGGER.info("" + formattingColors[i].getName().toLowerCase());
-                WIDGETS[i] = new Identifier("teamcoloredgui",
+                TeamIndicatorsPlus.LOGGER.info("" + formattingColors[i].getName().toLowerCase());
+                WIDGETS[i] = new Identifier("teamindicatorsplus",
                         "textures/" + formattingColors[i].getName().toLowerCase() + "_widgets.png");
             }
         }

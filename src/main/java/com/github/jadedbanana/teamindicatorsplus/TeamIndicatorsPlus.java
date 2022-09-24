@@ -1,9 +1,9 @@
-package com.github.jadedbanana.teamcoloredgui;
+package com.github.jadedbanana.teamindicatorsplus;
 
-import com.github.jadedbanana.teamcoloredgui.config.Config;
-import com.github.jadedbanana.teamcoloredgui.config.ConfigManager;
-import com.github.jadedbanana.teamcoloredgui.gui.TeamTextureFinder;
-import com.github.jadedbanana.teamcoloredgui.keybinds.KeyBinds;
+import com.github.jadedbanana.teamindicatorsplus.config.Config;
+import com.github.jadedbanana.teamindicatorsplus.config.ConfigManager;
+import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
+import com.github.jadedbanana.teamindicatorsplus.keybinds.KeyBinds;
 import net.fabricmc.api.ModInitializer;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.GsonBuilder;
@@ -11,10 +11,10 @@ import com.google.gson.Gson;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TeamColoredGUI implements ModInitializer {
+public class TeamIndicatorsPlus implements ModInitializer {
 
 	private KeyBinds keyBinds;
-	public static final Logger LOGGER = LoggerFactory.getLogger("teamcoloredgui");
+	public static final Logger LOGGER = LoggerFactory.getLogger("teamindicators+");
 	public static final Gson GSON;
 	public static Config CONFIG;
 
@@ -26,19 +26,19 @@ public class TeamColoredGUI implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		// Initialize config.
-		LOGGER.info("[Team Colored GUI] Loading config...");
+		LOGGER.info("[Team Indicators+] Loading config...");
 		ConfigManager.initializeConfig();
 
 		// Initialize team texture finder.
-		LOGGER.info("[Team Colored GUI] Loading team colors...");
+		LOGGER.info("[Team Indicators+] Loading team colors...");
 		TeamTextureFinder.initialize();
 
 		// Initialize keybinds.
-		LOGGER.info("[Team Colored GUI] Loading keybinds...");
+		LOGGER.info("[Team Indicators+] Loading keybinds...");
 		this.keyBinds = new KeyBinds();
 
 		// Loaded.
-		LOGGER.info("[Team Colored GUI] Loaded.");
+		LOGGER.info("[Team Indicators+] Loaded.");
 	}
 
 

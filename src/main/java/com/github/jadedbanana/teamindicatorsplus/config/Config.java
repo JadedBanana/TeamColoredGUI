@@ -1,4 +1,4 @@
-package com.github.jadedbanana.teamcoloredgui.config;
+package com.github.jadedbanana.teamindicatorsplus.config;
 
 public class Config {
 

@@ -1,4 +1,4 @@
-package com.github.jadedbanana.teamcoloredgui.config;
+package com.github.jadedbanana.teamindicatorsplus.config;
 
 import java.io.FileNotFoundException;
 import java.io.Reader;
@@ -8,9 +8,8 @@ import java.io.IOException;
 import java.io.FileWriter;
 import java.io.File;
 
-import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.scoreboard.Team;
 
 public class ConfigManager {
 
@@ -32,14 +31,14 @@ public class ConfigManager {
      */
     public static Config initializeConfig() {
         // If config exists, return it
-        if (TeamColoredGUI.CONFIG != null)
-            return TeamColoredGUI.CONFIG;
+        if (TeamIndicatorsPlus.CONFIG != null)
+            return TeamIndicatorsPlus.CONFIG;
 
         // If config does not exist, load it and return. If load failed, create new config.
         load();
-        if (TeamColoredGUI.CONFIG == null)
-            TeamColoredGUI.CONFIG = new Config();
-        return TeamColoredGUI.CONFIG;
+        if (TeamIndicatorsPlus.CONFIG == null)
+            TeamIndicatorsPlus.CONFIG = new Config();
+        return TeamIndicatorsPlus.CONFIG;
     }
 
 
@@ -51,7 +50,7 @@ public class ConfigManager {
         prepareConfigFile();
 
         // Get the JSON string generated from the config file
-        final String jsonString = TeamColoredGUI.GSON.toJson((Object)TeamColoredGUI.CONFIG);
+        final String jsonString = TeamIndicatorsPlus.GSON.toJson((Object) TeamIndicatorsPlus.CONFIG);
 
         // Write that bitch
         try {
@@ -94,15 +93,15 @@ public class ConfigManager {
                 save();
             if (ConfigManager.file.exists()) {
                 final BufferedReader br = new BufferedReader(new FileReader(ConfigManager.file));
-                final Config parsed = (Config) TeamColoredGUI.GSON.fromJson((Reader)br, (Class)Config.class);
+                final Config parsed = (Config) TeamIndicatorsPlus.GSON.fromJson((Reader)br, (Class)Config.class);
                 if (parsed != null)
-                    TeamColoredGUI.CONFIG = parsed;
+                    TeamIndicatorsPlus.CONFIG = parsed;
             }
         }
 
         // Can't load it despite saving it? Wuh oh!
         catch (FileNotFoundException e) {
-            System.err.println("Couldn't load InventoryHUD configuration file; reverting to defaults");
+            System.err.println("Couldn't load Team Indicators+ configuration file; reverting to defaults");
             e.printStackTrace();
         }
     }
@@ -112,10 +111,10 @@ public class ConfigManager {
     Returns the config object.
      */
     public static Config getConfig() {
-        if (TeamColoredGUI.CONFIG == null) {
-            TeamColoredGUI.CONFIG = new Config();
+        if (TeamIndicatorsPlus.CONFIG == null) {
+            TeamIndicatorsPlus.CONFIG = new Config();
         }
-        return TeamColoredGUI.CONFIG;
+        return TeamIndicatorsPlus.CONFIG;
     }
     
 }

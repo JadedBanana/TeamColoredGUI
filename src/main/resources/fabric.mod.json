@@ -19,7 +19,7 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.jadedbanana.teamcoloredgui.TeamColoredGUI"
+      "com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus"
     ]
   },
   "mixins": [

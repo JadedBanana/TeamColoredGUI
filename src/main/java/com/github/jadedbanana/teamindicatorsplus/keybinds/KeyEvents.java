@@ -1,8 +1,7 @@
-package com.github.jadedbanana.teamcoloredgui.keybinds;
+package com.github.jadedbanana.teamindicatorsplus.keybinds;
 
-import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
-import com.github.jadedbanana.teamcoloredgui.config.Config;
-import com.github.jadedbanana.teamcoloredgui.config.screens.OuterConfigMenuScreen;
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
+import com.github.jadedbanana.teamindicatorsplus.config.screens.OuterConfigMenuScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 
@@ -26,8 +25,8 @@ public class KeyEvents {
 
         // Keybind 1 (toggle)
         if (this.keyBinds[1].wasPressed()) {
-            TeamColoredGUI.CONFIG.ENABLED = !TeamColoredGUI.CONFIG.ENABLED;
-            TeamColoredGUI.LOGGER.info("TeamColoredGUI enabled toggle set to " + TeamColoredGUI.CONFIG.ENABLED + ".");
+            TeamIndicatorsPlus.CONFIG.ENABLED = !TeamIndicatorsPlus.CONFIG.ENABLED;
+            TeamIndicatorsPlus.LOGGER.info("Team Indicators+ enabled toggle set to " + TeamIndicatorsPlus.CONFIG.ENABLED + ".");
         }
     }
 

@@ -1,7 +1,7 @@
-package com.github.jadedbanana.teamcoloredgui.mixin;
+package com.github.jadedbanana.teamindicatorsplus.mixin;
 
-import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
-import com.github.jadedbanana.teamcoloredgui.gui.TeamTextureFinder;
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
+import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;
@@ -34,7 +34,7 @@ public abstract class InGameHudMixin {
 	private void redirectSetShaderTexture_renderHotbar(int texture, Identifier id) {
 		// Only run this method if the mod is enabled AND the widget recolor is enabled.
 		// If not, just do the normal intended call.
-		if (!TeamColoredGUI.CONFIG.ENABLED) {
+		if (!TeamIndicatorsPlus.CONFIG.ENABLED) {
 			RenderSystem.setShaderTexture(texture, id);
 			return;
 		}
