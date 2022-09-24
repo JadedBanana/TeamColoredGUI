@@ -6,15 +6,15 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.io.File;
 
 import com.github.jadedbanana.teamcoloredgui.TeamColoredGUI;
 import net.fabricmc.loader.api.FabricLoader;
-import java.io.File;
+import net.minecraft.scoreboard.Team;
 
 public class ConfigManager {
 
     private static File file;
-    private static Config config;
 
 
     /*
@@ -32,13 +32,14 @@ public class ConfigManager {
      */
     public static Config initializeConfig() {
         // If config exists, return it
-        if (ConfigManager.config != null)
-            return ConfigManager.config;
+        if (TeamColoredGUI.CONFIG != null)
+            return TeamColoredGUI.CONFIG;
 
-        // If config does not exist, load it and return
-        ConfigManager.config = new Config();
+        // If config does not exist, load it and return. If load failed, create new config.
         load();
-        return ConfigManager.config;
+        if (TeamColoredGUI.CONFIG == null)
+            TeamColoredGUI.CONFIG = new Config();
+        return TeamColoredGUI.CONFIG;
     }
 
 
@@ -50,7 +51,7 @@ public class ConfigManager {
         prepareConfigFile();
 
         // Get the JSON string generated from the config file
-        final String jsonString = TeamColoredGUI.GSON.toJson((Object)ConfigManager.config);
+        final String jsonString = TeamColoredGUI.GSON.toJson((Object)TeamColoredGUI.CONFIG);
 
         // Write that bitch
         try {
@@ -95,7 +96,7 @@ public class ConfigManager {
                 final BufferedReader br = new BufferedReader(new FileReader(ConfigManager.file));
                 final Config parsed = (Config) TeamColoredGUI.GSON.fromJson((Reader)br, (Class)Config.class);
                 if (parsed != null)
-                    ConfigManager.config = parsed;
+                    TeamColoredGUI.CONFIG = parsed;
             }
         }
 
@@ -111,10 +112,10 @@ public class ConfigManager {
     Returns the config object.
      */
     public static Config getConfig() {
-        if (ConfigManager.config == null) {
-            ConfigManager.config = new Config();
+        if (TeamColoredGUI.CONFIG == null) {
+            TeamColoredGUI.CONFIG = new Config();
         }
-        return ConfigManager.config;
+        return TeamColoredGUI.CONFIG;
     }
     
 }

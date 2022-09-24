@@ -1,5 +1,6 @@
 package com.github.jadedbanana.teamcoloredgui;
 
+import com.github.jadedbanana.teamcoloredgui.config.Config;
 import com.github.jadedbanana.teamcoloredgui.config.ConfigManager;
 import com.github.jadedbanana.teamcoloredgui.gui.TeamTextureFinder;
 import com.github.jadedbanana.teamcoloredgui.keybinds.KeyBinds;
@@ -15,7 +16,7 @@ public class TeamColoredGUI implements ModInitializer {
 	private KeyBinds keyBinds;
 	public static final Logger LOGGER = LoggerFactory.getLogger("teamcoloredgui");
 	public static final Gson GSON;
-	private static ConfigManager CONFIG;
+	public static Config CONFIG;
 
 
 	/*
