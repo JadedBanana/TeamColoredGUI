@@ -4,6 +4,8 @@ import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import com.github.jadedbanana.teamindicatorsplus.config.screens.OuterConfigMenuScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
+import net.minecraft.network.message.MessageType;
+import net.minecraft.text.Text;
 
 public class KeyEvents {
 
@@ -26,7 +28,11 @@ public class KeyEvents {
         // Keybind 1 (toggle)
         if (this.keyBinds[1].wasPressed()) {
             TeamIndicatorsPlus.CONFIG.ENABLED = !TeamIndicatorsPlus.CONFIG.ENABLED;
-            TeamIndicatorsPlus.LOGGER.info("Team Indicators+ enabled toggle set to " + TeamIndicatorsPlus.CONFIG.ENABLED + ".");
+            client.player.sendMessage(Text.Serializer.fromJson(
+                    "[{\"text\":\"[Team Indicators+] \",\"color\":\"green\"},{\"text\":\"Mod " +
+                            (TeamIndicatorsPlus.CONFIG.ENABLED ? "enabled." : "disabled.") +
+                            "\",\"color\":\"white\"}]"
+            ));
         }
     }
 
