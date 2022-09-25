@@ -43,6 +43,16 @@ public class TeamIndicatorsPlus implements ModInitializer {
 
 
 	/*
+	Save config method.
+	Logs a message and saves the config.
+	 */
+	public static void saveConfig() {
+		TeamIndicatorsPlus.LOGGER.info("Saving Team Indicators+ config.");
+		ConfigManager.save();
+	}
+
+
+	/*
 	Static initializer.
 	 */
 	static {

@@ -22,16 +22,17 @@ public class KeyEvents {
     public void KeyBindsEvents(final MinecraftClient client) {
         // Keybind 0 (Open config)
         if (this.keyBinds[0].wasPressed())
-            client.setScreenAndRender(new OuterConfigMenuScreen());
+            client.setScreen(new OuterConfigMenuScreen());
 
         // Keybind 1 (toggle)
         if (this.keyBinds[1].wasPressed()) {
             TeamIndicatorsPlus.CONFIG.ENABLED = !TeamIndicatorsPlus.CONFIG.ENABLED;
             client.player.sendMessage(Text.Serializer.fromJson(
                     "[{\"text\":\"[Team Indicators+] \",\"color\":\"green\"},{\"text\":\"Mod " +
-                            (TeamIndicatorsPlus.CONFIG.ENABLED ? "enabled." : "disabled.") +
-                            "\",\"color\":\"white\"}]"
+                    (TeamIndicatorsPlus.CONFIG.ENABLED ? "enabled." : "disabled.") +
+                    "\",\"color\":\"white\"}]"
             ));
+            TeamIndicatorsPlus.saveConfig();
         }
     }
 

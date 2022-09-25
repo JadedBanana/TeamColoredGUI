@@ -5,6 +5,7 @@ import com.github.jadedbanana.teamindicatorsplus.config.ConfigManager;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
 
 public class OuterConfigMenuScreen extends Screen {
@@ -20,28 +21,66 @@ public class OuterConfigMenuScreen extends Screen {
     Adds all the menu buttons.
      */
     protected void init() {
-        TeamIndicatorsPlus.LOGGER.info("" + this.width);
-
         // Creation of global toggle button, which requires its own reference object for... workaround reasons :P
         globalToggleButton = new ButtonWidget(
-                this.width / 2 - 155, this.height / 6 - 12, 150, 20,
-                Text.translatable(TeamIndicatorsPlus.CONFIG.ENABLED ? "teamindicatorsplus.options.globaltoggle.on" : "teamindicatorsplus.options.globaltoggle.off"),
-                (button) -> {
-                    TeamIndicatorsPlus.CONFIG.ENABLED = !TeamIndicatorsPlus.CONFIG.ENABLED;
-                    this.globalToggleButton.setMessage(Text.translatable(TeamIndicatorsPlus.CONFIG.ENABLED ? "teamindicatorsplus.options.globaltoggle.on" : "teamindicatorsplus.options.globaltoggle.off"));
-                }
+            this.width / 2 - 155, this.height / 6 - 12, 150, 20,
+            Text.translatable(TeamIndicatorsPlus.CONFIG.ENABLED ? "teamindicatorsplus.options.globaltoggle.on" : "teamindicatorsplus.options.globaltoggle.off"),
+            (button) -> {
+                // Toggle enabled state and save
+                TeamIndicatorsPlus.CONFIG.ENABLED = !TeamIndicatorsPlus.CONFIG.ENABLED;
+                TeamIndicatorsPlus.saveConfig();
+                // Update button text
+                this.globalToggleButton.setMessage(Text.translatable(TeamIndicatorsPlus.CONFIG.ENABLED ? "teamindicatorsplus.options.globaltoggle.on" : "teamindicatorsplus.options.globaltoggle.off"));
+            }
         );
         this.addDrawableChild(globalToggleButton);
 
-    }
+        // About button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 + 5, this.height / 6 - 12, 150, 20,
+            Text.translatable("teamindicatorsplus.options.outer.about"), (button) -> {
+                // TODO: add about screen
+            }
+        ));
 
+        // HUD button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 - 155, this.height / 6 + 42, 150, 20,
+            Text.translatable("teamindicatorsplus.options.outer.hud"), (button) -> {
+                // TODO: add hud options menu
+            }
+        ));
 
-    /*
-    Removed method, runs when this screen is closed.
-     */
-    public void removed() {
-        TeamIndicatorsPlus.LOGGER.info("Saving Team Indicators+ config.");
-        ConfigManager.save();
+        // Screens button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 + 5, this.height / 6 + 42, 150, 20,
+            Text.translatable("teamindicatorsplus.options.outer.screens"), (button) -> {
+                // TODO: add screens options menu
+            }
+        ));
+
+        // World button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 - 155, this.height / 6 + 68, 150, 20,
+            Text.translatable("teamindicatorsplus.options.outer.world"), (button) -> {
+                // TODO: add world options menu
+            }
+        ));
+
+        // Players button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 + 5, this.height / 6 + 68, 150, 20,
+            Text.translatable("teamindicatorsplus.options.outer.players"), (button) -> {
+                // TODO: add player options menu
+            }
+        ));
+
+        // Done button
+        this.addDrawableChild(new ButtonWidget(
+            this.width / 2 - 100, this.height / 6 + 168, 200, 20, ScreenTexts.DONE, (button) -> {
+                this.client.setScreen(null);
+            }
+        ));
     }
 
 
