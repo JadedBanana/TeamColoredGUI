@@ -4,7 +4,6 @@ import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import com.github.jadedbanana.teamindicatorsplus.config.screens.OuterConfigMenuScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
-import net.minecraft.network.message.MessageType;
 import net.minecraft.text.Text;
 
 public class KeyEvents {
