@@ -1,7 +1,6 @@
 package com.github.jadedbanana.teamindicatorsplus.config.screens;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
-import com.github.jadedbanana.teamindicatorsplus.config.ConfigManager;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
@@ -12,6 +11,9 @@ public class OuterConfigMenuScreen extends Screen {
 
     protected ButtonWidget globalToggleButton;
 
+    /*
+    Constructor.
+     */
     public OuterConfigMenuScreen() {
         super(Text.translatable("teamindicatorsplus.options.screen.outer.title"));
     }
