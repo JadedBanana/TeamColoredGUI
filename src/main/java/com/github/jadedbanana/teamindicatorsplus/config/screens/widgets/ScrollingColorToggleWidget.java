@@ -13,18 +13,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Optional;
 
-public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColorToggleWidget.Entry> {
+public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColorToggleWidget.ColorToggleEntry> {
 
     public static MinecraftClient client;
 
 
     public ScrollingColorToggleWidget(MinecraftClient client, int width, int height, int top, int bottom, int itemHeight) {
         super(client, width, height, top, bottom, itemHeight);
+        this.left = 50;
 
         ScrollingColorToggleWidget.client = client;
 
         for (int i = 0; i < 30; i++)
-            this.addEntry(new Entry());
+            this.addEntry(new ColorToggleEntry());
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {}
 
-    public static class Entry extends ElementListWidget.Entry<Entry> {
+    public static class ColorToggleEntry extends ElementListWidget.Entry<ColorToggleEntry> {
 
         @Override
         public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
