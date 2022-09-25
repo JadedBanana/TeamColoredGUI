@@ -47,7 +47,7 @@ public class OuterConfigMenuScreen extends Screen {
         this.addDrawableChild(new ButtonWidget(
             this.width / 2 - 155, this.height / 6 + 42, 150, 20,
             Text.translatable("teamindicatorsplus.options.outer.hud"), (button) -> {
-                // TODO: add hud options menu
+                this.client.setScreen(new HUDConfigMenuScreen(this));
             }
         ));
 
