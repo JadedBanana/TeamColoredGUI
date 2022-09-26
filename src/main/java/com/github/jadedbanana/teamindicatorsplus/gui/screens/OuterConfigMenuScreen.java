@@ -1,4 +1,4 @@
-package com.github.jadedbanana.teamindicatorsplus.config.screens;
+package com.github.jadedbanana.teamindicatorsplus.gui.screens;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import net.minecraft.client.gui.screen.Screen;

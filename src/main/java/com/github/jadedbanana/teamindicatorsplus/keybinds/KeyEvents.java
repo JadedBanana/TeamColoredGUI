@@ -1,7 +1,7 @@
 package com.github.jadedbanana.teamindicatorsplus.keybinds;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
-import com.github.jadedbanana.teamindicatorsplus.config.screens.OuterConfigMenuScreen;
+import com.github.jadedbanana.teamindicatorsplus.gui.screens.OuterConfigMenuScreen;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.text.Text;

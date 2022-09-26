@@ -1,6 +1,7 @@
-package com.github.jadedbanana.teamindicatorsplus.config.screens;
+package com.github.jadedbanana.teamindicatorsplus.gui.screens;
 
-import com.github.jadedbanana.teamindicatorsplus.config.screens.widgets.ScrollingColorToggleWidget;
+import com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets.ColorToggleEntryType;
+import com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets.ScrollingColorToggleWidget;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
@@ -24,7 +25,9 @@ public class HUDConfigMenuScreen extends Screen {
     Adds all the scrolling stuff.
      */
     public void init() {
-        this.scrollingColorToggleWidget = new ScrollingColorToggleWidget(this.client, this.width, this.height, 20, this.height - 32, 15);
+        this.scrollingColorToggleWidget = new ScrollingColorToggleWidget(
+                this.client, this.width, this.height, ColorToggleEntryType.HOTBAR
+        );
         this.addSelectableChild(this.scrollingColorToggleWidget);
     }
 

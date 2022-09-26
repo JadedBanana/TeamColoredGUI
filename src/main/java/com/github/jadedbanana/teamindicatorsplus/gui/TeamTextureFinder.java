@@ -8,8 +8,8 @@ import net.minecraft.util.Formatting;
 public class TeamTextureFinder {
 
     // Colors
-    private static int[] COLORS;
-    private static Identifier[] WIDGETS;
+    public static int[] COLORS;
+    public static Identifier[] WIDGETS;
 
 
     /*

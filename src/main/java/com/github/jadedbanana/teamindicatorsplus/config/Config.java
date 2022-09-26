@@ -5,4 +5,6 @@ public class Config {
     // Global toggle
     public boolean ENABLED = true;
 
+    public boolean[] HOTBAR_ENABLEDS;
+
 }
