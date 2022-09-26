@@ -1,9 +1,12 @@
 package com.github.jadedbanana.teamindicatorsplus.gui;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsUtil;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Formatting;
+
+import java.util.ArrayList;
 
 public class TeamTextureFinder {
 
@@ -18,20 +21,18 @@ public class TeamTextureFinder {
      */
     public static void initialize() {
         // Instantiate formatting colors.
-        Formatting[] formattingColors = Formatting.values();
+        ArrayList<Formatting> colorFormats = TeamIndicatorsUtil.getColorFormats();
 
         // Set list lengths.
-        COLORS = new int[formattingColors.length];
-        WIDGETS = new Identifier[formattingColors.length];
+        COLORS = new int[colorFormats.size()];
+        WIDGETS = new Identifier[colorFormats.size()];
 
         // Iterate through formats and add them to the lists
-        for (int i = 0; i < formattingColors.length; i++) {
-            if (formattingColors[i].getColorIndex() != -1) {
-                COLORS[i] = formattingColors[i].getColorValue();
-                TeamIndicatorsPlus.LOGGER.info("" + formattingColors[i].getName().toLowerCase());
-                WIDGETS[i] = new Identifier("teamindicatorsplus",
-                        "textures/" + formattingColors[i].getName().toLowerCase() + "_widgets.png");
-            }
+        for (int i = 0; i < colorFormats.size(); i++) {
+            COLORS[i] = colorFormats.get(i).getColorValue();
+            TeamIndicatorsPlus.LOGGER.info("" + colorFormats.get(i).getName().toLowerCase());
+            WIDGETS[i] = new Identifier("teamindicatorsplus",
+                    "textures/" + colorFormats.get(i).getName().toLowerCase() + "_widgets.png");
         }
     }
 

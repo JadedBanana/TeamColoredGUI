@@ -1,5 +1,6 @@
 package com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets;
 
+import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsUtil;
 import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -8,10 +9,13 @@ import net.minecraft.client.gui.Selectable;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ElementListWidget;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +30,9 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
         ScrollingColorToggleWidget.client = client;
 
-        Formatting[] formattingColors = Formatting.values();
-        for (int i = 0; i < formattingColors.length; i++)
-            this.addEntry(new ColorToggleEntry(type, formattingColors[i], i));
+        ArrayList<Formatting> formatList = TeamIndicatorsUtil.getColorFormats();
+        for (int i = 0; i < formatList.size(); i++)
+            this.addEntry(new ColorToggleEntry(type, formatList.get(i), i));
     }
 
     @Override
@@ -63,17 +67,23 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
     public static class ColorToggleEntry extends ElementListWidget.Entry<ColorToggleEntry> {
 
+        private int configIndex;
+        private Text titleText;
+        private Style titleStyle;
+
         public ColorToggleEntry(ColorToggleEntryType type, Formatting formatting, int configIndex) {
+            titleText = Text.translatable("color.whatever");
+            titleStyle = Style.EMPTY.withColor(formatting);
+
 
         }
 
         @Override
         public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer var10000 = ScrollingColorToggleWidget.client.textRenderer;
-            Text var10002 = Text.literal("okay yall");
             float var10003 = (float)(x);
             int var10004 = y + entryHeight / 2;
-            var10000.draw(matrices, var10002, var10003, (float)(var10004 - 9 / 2), 16777215);
+            var10000.draw(matrices, titleText.getWithStyle(titleStyle).get(0), var10003, (float)(var10004 - 9 / 2), 16777215);
         }
 
         @Override
@@ -82,8 +92,6 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
         }
 
         @Override
-        public List<? extends Element> children() {
-            return null;
-        }
+        public List<? extends Element> children() { return Collections.emptyList(); }
     }
 }
