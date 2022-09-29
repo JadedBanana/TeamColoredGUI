@@ -12,6 +12,7 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Style;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -67,23 +68,43 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
     public static class ColorToggleEntry extends ElementListWidget.Entry<ColorToggleEntry> {
 
+        // Config index, used to grab config info.
         private int configIndex;
+        private boolean[] configList;
+        private boolean enabled;
+
+        // Text stuff. Used to draw the text for the config options.
         private Text titleText;
-        private Style titleStyle;
 
+        // Image stuff.
+        private Identifier coloredImage;
+        private Identifier defaultImage;
+
+
+        /*
+        Constructor.
+        Creates everything the entry uses.
+         */
         public ColorToggleEntry(ColorToggleEntryType type, Formatting formatting, int configIndex) {
-            titleText = Text.translatable("color.whatever");
-            titleStyle = Style.EMPTY.withColor(formatting);
+            // Copy config stuff.
+            this.configIndex = configIndex;
+            configList = type.configList;
+            enabled = configList[configIndex];
 
+            // Copy images.
+            coloredImage = type.colorImages[configIndex];
+            defaultImage = type.defaultImage;
 
+            // Create text objects based on color name
+            titleText = Text.translatable("teamindicatorsplus.options.color." + formatting.getName().toLowerCase());
         }
 
         @Override
         public void render(MatrixStack matrices, int index, int y, int x, int entryWidth, int entryHeight, int mouseX, int mouseY, boolean hovered, float tickDelta) {
             TextRenderer var10000 = ScrollingColorToggleWidget.client.textRenderer;
             float var10003 = (float)(x);
-            int var10004 = y + entryHeight / 2;
-            var10000.draw(matrices, titleText.getWithStyle(titleStyle).get(0), var10003, (float)(var10004 - 9 / 2), 16777215);
+            int var10004 = y + 7;
+            var10000.draw(matrices, titleText, var10003, (float)(var10004 - 9 / 2), 16777215);
         }
 
         @Override

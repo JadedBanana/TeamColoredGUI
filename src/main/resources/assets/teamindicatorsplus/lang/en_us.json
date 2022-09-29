@@ -6,5 +6,21 @@
   "teamindicatorsplus.options.outer.hud": "HUD Options...",
   "teamindicatorsplus.options.outer.screens": "Screen Options...",
   "teamindicatorsplus.options.outer.world": "World Options...",
-  "teamindicatorsplus.options.outer.players": "Player Options..."
+  "teamindicatorsplus.options.outer.players": "Player Options...",
+  "teamindicatorsplus.options.color.black": "§0Black Team",
+  "teamindicatorsplus.options.color.dark_blue": "§1Dark Blue Team",
+  "teamindicatorsplus.options.color.dark_green": "§2Dark Green Team",
+  "teamindicatorsplus.options.color.dark_aqua": "§3Dark Aqua Team",
+  "teamindicatorsplus.options.color.dark_red": "§4Dark Red Team",
+  "teamindicatorsplus.options.color.dark_purple": "§5Dark Purple Team",
+  "teamindicatorsplus.options.color.gold": "§6Gold Team",
+  "teamindicatorsplus.options.color.gray": "§7Gray Team",
+  "teamindicatorsplus.options.color.dark_gray": "§8Dark Gray Team",
+  "teamindicatorsplus.options.color.blue": "§9Blue Team",
+  "teamindicatorsplus.options.color.green": "§aGreen Team",
+  "teamindicatorsplus.options.color.aqua": "§bAqua Team",
+  "teamindicatorsplus.options.color.red": "§cRed Team",
+  "teamindicatorsplus.options.color.light_purple": "§dLight Purple Team",
+  "teamindicatorsplus.options.color.yellow": "§eYellow Team",
+  "teamindicatorsplus.options.color.white": "§fWhite Team"
 }
