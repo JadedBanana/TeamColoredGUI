@@ -31,11 +31,12 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     Constructor.
      */
     public ScrollingColorToggleWidget(MinecraftClient client, Screen parent, int width, int height, ColorToggleEntryType type) {
-        super(client, width, height, 20, height - 32, 39);
+        super(client, width - 40, height, 20, height - 32, 40);
+        this.setLeftPos(40);
 
         // Copy over attributes.
         ScrollingColorToggleWidget.client = client;
-        this.rowWidth = 110 + type.width;
+        this.rowWidth = 105 + type.width;
 
         // Create entries.
         ArrayList<Formatting> formatList = TeamIndicatorsUtil.getColorFormats();
@@ -48,7 +49,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     Variable overrides.
      */
     protected int getScrollbarPositionX() {
-        return super.getScrollbarPositionX() + 42;
+        return super.getScrollbarPositionX() + 80;
     }
     public int getRowWidth() {
         return this.rowWidth;
