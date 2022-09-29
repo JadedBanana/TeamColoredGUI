@@ -43,19 +43,26 @@ public abstract class ScrollingColorConfigScreen extends Screen {
     public void init() {
         toggleWidgets = new ArrayList<ScrollingColorToggleWidget>();
 
+        // Find midpoint (max of 2 things)
+        int buttonsCenter = Math.max(215, this.width / 2 + 20);
+
         // Done button
         this.addDrawableChild(new ButtonWidget(
-            this.width / 2 - 130, this.height - 27, 50, 20,
+            buttonsCenter - 130, this.height - 27, 50, 20,
             Text.translatable("teamindicatorsplus.options.enable_all"), (button) -> {
                 this.client.setScreen(this.parent);
         }));
+
+        // Disable all button
         this.addDrawableChild(new ButtonWidget(
-            this.width / 2 - 75, this.height - 27, 50, 20,
+            buttonsCenter - 75, this.height - 27, 50, 20,
             Text.translatable("teamindicatorsplus.options.disable_all"), (button) -> {
                 this.client.setScreen(this.parent);
         }));
+
+        // Enable all button
         this.addDrawableChild(new ButtonWidget(
-            this.width / 2 - 20, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
+            buttonsCenter - 20, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
                 this.client.setScreen(this.parent);
         }));
     }
