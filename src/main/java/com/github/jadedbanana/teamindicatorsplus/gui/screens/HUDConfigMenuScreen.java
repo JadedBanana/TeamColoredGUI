@@ -26,7 +26,7 @@ public class HUDConfigMenuScreen extends Screen {
      */
     public void init() {
         this.scrollingColorToggleWidget = new ScrollingColorToggleWidget(
-                this.client, this.width, this.height, ColorToggleEntryType.HOTBAR
+                this.client, this, this.width, this.height, ColorToggleEntryType.HOTBAR
         );
         this.addSelectableChild(this.scrollingColorToggleWidget);
     }
