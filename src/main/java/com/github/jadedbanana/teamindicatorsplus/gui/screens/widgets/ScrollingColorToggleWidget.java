@@ -19,28 +19,40 @@ import net.minecraft.util.Identifier;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColorToggleWidget.ColorToggleEntry> {
 
     public static MinecraftClient client;
+    private final int rowWidth;
 
 
+    /*
+    Constructor.
+     */
     public ScrollingColorToggleWidget(MinecraftClient client, Screen parent, int width, int height, ColorToggleEntryType type) {
         super(client, width, height, 20, height - 32, 39);
 
+        // Copy over attributes.
         ScrollingColorToggleWidget.client = client;
+        this.rowWidth = 110 + type.width;
 
+        // Create entries.
         ArrayList<Formatting> formatList = TeamIndicatorsUtil.getColorFormats();
         for (int i = 0; i < formatList.size(); i++)
             this.addEntry(new ColorToggleEntry(parent, type, formatList.get(i), i));
     }
 
-    @Override
-    public Optional<Element> hoveredElement(double mouseX, double mouseY) {
-        return super.hoveredElement(mouseX, mouseY);
+
+    /*
+    Variable overrides.
+     */
+    protected int getScrollbarPositionX() {
+        return super.getScrollbarPositionX() + 42;
+    }
+    public int getRowWidth() {
+        return this.rowWidth;
     }
 
     @Override
@@ -115,7 +127,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
             titleText = Text.translatable("teamindicatorsplus.options.color." + formatting.getName().toLowerCase());
 
             // Create button.
-            this.enableDisableButton = new ButtonWidget(0, 0, 75, 20, Text.literal("okay"), (button) -> {
+            this.enableDisableButton = new ButtonWidget(0, 0, 100, 20, Text.literal("#0bacff"), (button) -> {
                 this.toggleSet(!this.configList[this.configIndex]);
             });
         }
@@ -145,10 +157,10 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderTexture(0, enabled ? coloredImage : defaultImage);
-            this.parentScreen.drawTexture(matrices, x + entryWidth / 2 - 140 + (200 - imageW) / 2, y + 15, offsetX, offsetY, imageW, imageH);
+            this.parentScreen.drawTexture(matrices, x, y + 15, offsetX, offsetY, imageW, imageH);
 
             // Draw button.
-            this.enableDisableButton.x = x + entryWidth / 2 + 65;
+            this.enableDisableButton.x = x + entryWidth - 100;
             this.enableDisableButton.y = y + 15;
             this.enableDisableButton.render(matrices, mouseX, mouseY, tickDelta);
         }
