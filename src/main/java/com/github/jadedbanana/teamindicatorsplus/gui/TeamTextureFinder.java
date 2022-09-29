@@ -38,33 +38,27 @@ public class TeamTextureFinder {
 
 
     /*
-    Widget texture getter.
-    Widget texture has the hotbar, item selector, offhand, as well as other things.
-    Although in this case it's really only used for the hotbar.
+    Hotbar texture getter.
+    Wrapper for getTexture.
      */
-    public static Identifier getWidgetTexture(AbstractTeam scoreboardTeam) {
-        return getTexture(scoreboardTeam, WIDGETS);
+    public static Identifier getHotbarTexture(AbstractTeam scoreboardTeam) {
+        return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.HOTBAR_ENABLEDS, WIDGETS);
     }
 
 
     /*
     Gets the team-colored texture for a given team.
      */
-    private static Identifier getTexture(AbstractTeam scoreboardTeam, Identifier[] textures) {
+    private static Identifier getTexture(AbstractTeam scoreboardTeam, boolean[] configList, Identifier[] textures) {
         // Get team color
-        Integer teamColor = scoreboardTeam.getColor().getColorValue();
+        Integer colorIndex = scoreboardTeam.getColor().getColorIndex();
 
-        // If null, return null
-        if (teamColor == null)
+        // If team color disabled or DNE or exists outside texture range, return null
+        if (colorIndex < 0 || colorIndex > textures.length || !configList[colorIndex])
             return null;
 
-        // Iterate through team colors, and if team found, return that team's texture
-        for (int i = 0; i < COLORS.length; i++)
-            if (COLORS[i] == teamColor)
-                return textures[i];
-
-        // Return null.
-        return null;
+        // Return textures at the provided index.
+        return textures[colorIndex];
     }
 
 }

@@ -49,7 +49,7 @@ public abstract class InGameHudMixin {
 			// Check which texture we're replacing and call the appropriate texture replacement function.
 			// Widgets
 			if (id == WIDGETS_TEXTURE)
-				new_id = TeamTextureFinder.getWidgetTexture(playerEntity.getScoreboardTeam());
+				new_id = TeamTextureFinder.getHotbarTexture(playerEntity.getScoreboardTeam());
 		}
 
 		// Set the shader texture.
