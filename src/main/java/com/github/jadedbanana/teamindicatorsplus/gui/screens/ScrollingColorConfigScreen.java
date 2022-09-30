@@ -1,6 +1,5 @@
 package com.github.jadedbanana.teamindicatorsplus.gui.screens;
 
-import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets.ColorToggleEntryType;
 import com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets.ScrollingColorToggleWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -10,8 +9,6 @@ import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.ScreenTexts;
 import net.minecraft.text.Text;
-
-import java.util.ArrayList;
 
 public abstract class ScrollingColorConfigScreen extends Screen {
 
