@@ -132,13 +132,19 @@ public abstract class ScrollingColorConfigScreen extends Screen {
     Render method, renders background and all the buttons and stuff.
      */
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        // Draw central widget and sidebar.
         this.currentToggleWidget.render(matrices, mouseX, mouseY, delta);
         this.renderSidebar(0);
+
+        // Draw text and have all drawable buttons drawn.
         drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 8, 16777215);
         super.render(matrices, mouseX, mouseY, delta);
     }
 
 
+    /*
+    RenderSidebar method, renders the sidebar background.
+     */
     private void renderSidebar(int vOffset) {
         // Set up Tesselator and BufferBuilder to draw background.
         Tessellator tessellator = Tessellator.getInstance();

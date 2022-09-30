@@ -8,6 +8,7 @@ public enum ColorToggleEntryType {
 
     HOTBAR(0, 0, 182, 22, new Identifier("textures/gui/widgets.png"), TeamTextureFinder.WIDGETS, TeamIndicatorsPlus.CONFIG.HOTBAR_ENABLEDS);
 
+    // Variables to help with stuff.
     public int offsetX;
     public int offsetY;
     public int width;

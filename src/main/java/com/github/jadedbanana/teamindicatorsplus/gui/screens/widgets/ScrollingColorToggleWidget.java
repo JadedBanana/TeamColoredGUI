@@ -96,6 +96,10 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
         tessellator.draw();
     }
 
+
+    /*
+    ColorToggleEntry class, used to populate the ScrollingColorToggleWidget.
+     */
     public static class ColorToggleEntry extends ElementListWidget.Entry<ColorToggleEntry> {
 
         // Config index, used to grab config info.
