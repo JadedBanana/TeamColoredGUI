@@ -72,6 +72,17 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
 
     /*
+    SetAll method.
+    Sets all the entries' values and saves.
+     */
+    public void setAll(boolean changeVal) {
+        for (ColorToggleEntry e : this.children())
+            e.set(changeVal);
+        TeamIndicatorsPlus.saveConfig();
+    }
+
+
+    /*
     Render method.
     Calls the parent method, but also draws a shadow on the left side (at x = ScrollingColorConfigScreen.SIDEBAR_WIDTH).
      */
@@ -155,12 +166,21 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
         /*
         Toggle set.
-        Toggles the config option to the provided value.
+        Toggles the config option to the provided value and saves.
          */
         public void toggleSet(boolean changeVal) {
+            this.set(changeVal);
+            TeamIndicatorsPlus.saveConfig();
+        }
+
+
+        /*
+        Set.
+        Sets the config option to the provided value but does NOT save.
+         */
+        public void set(boolean changeVal) {
             this.configList[this.configIndex] = changeVal;
             this.enabled = changeVal;
-            TeamIndicatorsPlus.saveConfig();
         }
 
 

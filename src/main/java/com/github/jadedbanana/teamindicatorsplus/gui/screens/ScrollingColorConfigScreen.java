@@ -57,14 +57,14 @@ public abstract class ScrollingColorConfigScreen extends Screen {
         this.addDrawableChild(new ButtonWidget(
                 buttonsCenter - 140, this.height - 27, 60, 20,
                 Text.translatable("teamindicatorsplus.options.enable_all"), (button) -> {
-            this.client.setScreen(this.parent);
+            this.currentToggleWidget.setAll(true);
         }));
 
         // Disable all button
         this.addDrawableChild(new ButtonWidget(
                 buttonsCenter - 75, this.height - 27, 60, 20,
                 Text.translatable("teamindicatorsplus.options.disable_all"), (button) -> {
-            this.client.setScreen(this.parent);
+            this.currentToggleWidget.setAll(false);
         }));
 
         // Enable all button
@@ -158,7 +158,6 @@ public abstract class ScrollingColorConfigScreen extends Screen {
         leftXPos = leftXPos - ((leftXPos / 32) + 1) * 32;
 
         // Draw background.
-        TeamIndicatorsPlus.LOGGER.info("" + leftXPos);
         bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_TEXTURE_COLOR);
         bufferBuilder.vertex(leftXPos, this.height, 0.0).texture(0.0F, (float)this.height / 32.0F + (float)vOffset).color(64, 64, 64, 255).next();
         bufferBuilder.vertex(SIDEBAR_WIDTH, this.height, 0.0).texture((float)(SIDEBAR_WIDTH - leftXPos) / 32.0F, (float)this.height / 32.0F + (float)vOffset).color(64, 64, 64, 255).next();
