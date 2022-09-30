@@ -1,7 +1,7 @@
 package com.github.jadedbanana.teamindicatorsplus.mixin;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
-import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
+import com.github.jadedbanana.teamindicatorsplus.TeamTextureFinder;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.entity.player.PlayerEntity;

@@ -2,7 +2,6 @@ package com.github.jadedbanana.teamindicatorsplus;
 
 import com.github.jadedbanana.teamindicatorsplus.config.Config;
 import com.github.jadedbanana.teamindicatorsplus.config.ConfigManager;
-import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
 import com.github.jadedbanana.teamindicatorsplus.keybinds.KeyBinds;
 import net.fabricmc.api.ModInitializer;
 import com.google.gson.FieldNamingPolicy;

@@ -1,7 +1,7 @@
 package com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
-import com.github.jadedbanana.teamindicatorsplus.gui.TeamTextureFinder;
+import com.github.jadedbanana.teamindicatorsplus.TeamTextureFinder;
 import net.minecraft.util.Identifier;
 
 public enum ColorToggleEntryType {

@@ -1,4 +1,4 @@
-package com.github.jadedbanana.teamindicatorsplus.gui;
+package com.github.jadedbanana.teamindicatorsplus;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsUtil;
@@ -31,8 +31,9 @@ public class TeamTextureFinder {
         for (int i = 0; i < colorFormats.size(); i++) {
             COLORS[i] = colorFormats.get(i).getColorValue();
             TeamIndicatorsPlus.LOGGER.info("" + colorFormats.get(i).getName().toLowerCase());
+            // Widgets
             WIDGETS[i] = new Identifier("teamindicatorsplus",
-                    "textures/" + colorFormats.get(i).getName().toLowerCase() + "_widgets.png");
+                    "textures/gui/" + colorFormats.get(i).getName().toLowerCase() + "_widgets.png");
         }
     }
 
