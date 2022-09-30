@@ -24,9 +24,9 @@ public abstract class InGameHudMixin {
 
 
 	/*
-		Redirect for the setShaderTexture calls in renderHotbar.
-		Will detect which texture is being replaced and will substitute if needed.
-		If not needed, will call the method as normal.
+	Redirect for the setShaderTexture calls in renderHotbar.
+	Will detect which texture is being replaced and will substitute if needed.
+	If not needed, will call the method as normal.
 	 */
 	@Redirect(method = "renderHotbar", at = @At(value = "INVOKE",
 			target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V")
