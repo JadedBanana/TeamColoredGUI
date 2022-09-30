@@ -158,8 +158,10 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
             titleText = Text.translatable("teamindicatorsplus.options.color." + formatting.getName().toLowerCase());
 
             // Create button.
-            this.enableDisableButton = new ButtonWidget(0, 0, 100, 20, Text.literal("#0bacff"), (button) -> {
-                this.toggleSet(!this.configList[this.configIndex]);
+            this.enableDisableButton = new ButtonWidget(0, 0, 100, 20,
+                enabled ? Text.translatable("teamindicatorsplus.options.enabled") :
+                Text.translatable("teamindicatorsplus.options.disabled"), (button) -> {
+                    this.toggleSet(!this.configList[this.configIndex]);
             });
         }
 
@@ -181,6 +183,9 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
         public void set(boolean changeVal) {
             this.configList[this.configIndex] = changeVal;
             this.enabled = changeVal;
+            this.enableDisableButton.setMessage(
+                    changeVal ? Text.translatable("teamindicatorsplus.options.enabled") :
+                            Text.translatable("teamindicatorsplus.options.disabled"));
         }
 
 
