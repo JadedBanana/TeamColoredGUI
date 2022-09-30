@@ -18,29 +18,15 @@ public class HUDConfigMenuScreen extends ScrollingColorConfigScreen {
 
     /*
     Init method.
-    Adds all the scrolling stuff.
+    Adds all the stuff.
      */
     public void init() {
-
-        // HUD button
-        this.addDrawableChild(new ButtonWidget(
-                5, 20, 80, 20,
-                Text.translatable("Hotbar..."), (button) -> {
-        }
-        ));
-
-        // HUD button
-        this.addDrawableChild(new ButtonWidget(
-                5, 45, 80, 20,
-                Text.translatable("EXP Bar..."), (button) -> {
-        }
-        ));
+        // Add normal stuff
         super.init();
-        this.currentWidget = new ScrollingColorToggleWidget(
-                this.client, this, this.width, this.height, ColorToggleEntryType.HOTBAR
-        );
-        this.addSelectableChild(this.currentWidget);
-
+        // Add the Color toggles
+        super.init(new ColorToggleEntryType[]{
+                ColorToggleEntryType.HOTBAR
+        });
     }
 
 }

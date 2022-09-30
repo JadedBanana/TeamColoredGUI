@@ -15,11 +15,18 @@ import java.util.ArrayList;
 
 public abstract class ScrollingColorConfigScreen extends Screen {
 
-
+    // Constants!
     public static final int SIDEBAR_WIDTH = 90;
-    ArrayList<ScrollingColorToggleWidget> toggleWidgets;
-    ScrollingColorToggleWidget currentWidget;
+
+    // Widgets.
+    // Used to keep track of all the shenanigans.
+    protected ScrollingColorToggleWidget[] colorToggleWidgets;
+    protected ScrollingColorToggleWidget currentToggleWidget;
+    protected ButtonWidget[] colorButtons;
+
+    // Parent screen.
     Screen parent;
+
 
     /*
     Constructor.
@@ -39,34 +46,85 @@ public abstract class ScrollingColorConfigScreen extends Screen {
 
 
     /*
-    Init method.
-    Resets all the widgets for new use.
+    Init method (no arguments).
+    Sets all the buttons up that DON'T have much to do about the color toggles.
      */
     public void init() {
-        toggleWidgets = new ArrayList<ScrollingColorToggleWidget>();
-
-        // Find midpoint (max of 2 things)
-        int buttonsCenter = Math.max(225, this.width / 2 + 20);
+        // Find button midpoint (so that buttons do not overlap with sidebar)
+        int buttonsCenter = Math.max(SIDEBAR_WIDTH + 145, this.width / 2 + 20);
 
         // Done button
         this.addDrawableChild(new ButtonWidget(
-            buttonsCenter - 140, this.height - 27, 60, 20,
-            Text.translatable("teamindicatorsplus.options.enable_all"), (button) -> {
-                this.client.setScreen(this.parent);
+                buttonsCenter - 140, this.height - 27, 60, 20,
+                Text.translatable("teamindicatorsplus.options.enable_all"), (button) -> {
+            this.client.setScreen(this.parent);
         }));
 
         // Disable all button
         this.addDrawableChild(new ButtonWidget(
-            buttonsCenter - 75, this.height - 27, 60, 20,
-            Text.translatable("teamindicatorsplus.options.disable_all"), (button) -> {
-                this.client.setScreen(this.parent);
+                buttonsCenter - 75, this.height - 27, 60, 20,
+                Text.translatable("teamindicatorsplus.options.disable_all"), (button) -> {
+            this.client.setScreen(this.parent);
         }));
 
         // Enable all button
         this.addDrawableChild(new ButtonWidget(
-            buttonsCenter - 10, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
-                this.client.setScreen(this.parent);
+                buttonsCenter - 10, this.height - 27, 150, 20, ScreenTexts.DONE, (button) -> {
+            this.client.setScreen(this.parent);
         }));
+    }
+
+
+    /*
+    Init method (one argument).
+    Creates all the color toggling shit!
+     */
+    public void init(ColorToggleEntryType[] entryTypes) {
+        // Create lists.
+        colorToggleWidgets = new ScrollingColorToggleWidget[entryTypes.length];
+        colorButtons = new ButtonWidget[entryTypes.length];
+
+        // Iterate through entry types and create color toggle widgets.
+        for (int i = 0; i < entryTypes.length; i++) {
+            ScrollingColorToggleWidget scrollWidget = new ScrollingColorToggleWidget(
+                this.client, this, this.width, this.height, entryTypes[i]
+            );
+            colorToggleWidgets[i] = scrollWidget;
+
+            // Create matching button.
+            colorButtons[i] = new ButtonWidget(
+                5, 20 + i * 25, SIDEBAR_WIDTH - 10, 20,
+                Text.translatable("teamindicatorsplus.options.tab." + entryTypes[i].name().toLowerCase()),
+                (button) -> {
+                    this.setActiveWidget(button, scrollWidget);
+            });
+            this.addDrawableChild(colorButtons[i]);
+        }
+
+        // Set default acive widget.
+        this.setActiveWidget(colorButtons[0], colorToggleWidgets[0]);
+    }
+
+
+    /*
+    SetActiveWidget method.
+    Switches the active widget from one to the other.
+     */
+    public void setActiveWidget(ButtonWidget button, ScrollingColorToggleWidget colorToggleWidget) {
+        // First, remove the existing colorToggleWidget, if it exists.
+        if (currentToggleWidget != null)
+            this.remove(currentToggleWidget);
+
+        // Add the new color widget as the currentToggleWidget.
+        currentToggleWidget = colorToggleWidget;
+        this.addSelectableChild(currentToggleWidget);
+
+        // Enable all buttons EXCEPT this one, which gets disabled.
+        for (ButtonWidget b : colorButtons)
+            if (b == button)
+                b.active = false;
+            else
+                b.active = true;
     }
 
 
@@ -74,7 +132,7 @@ public abstract class ScrollingColorConfigScreen extends Screen {
     Render method, renders background and all the buttons and stuff.
      */
     public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
-        this.currentWidget.render(matrices, mouseX, mouseY, delta);
+        this.currentToggleWidget.render(matrices, mouseX, mouseY, delta);
         this.renderSidebar(0);
         drawCenteredText(matrices, this.textRenderer, this.title, this.width / 2, 8, 16777215);
         super.render(matrices, mouseX, mouseY, delta);
@@ -90,7 +148,7 @@ public abstract class ScrollingColorConfigScreen extends Screen {
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
 
         // Determine the x position we start with to reduce clashing with the widget's top + bottom texture.
-        int leftXPos = this.currentWidget.getLeft();
+        int leftXPos = this.currentToggleWidget.getLeft();
         leftXPos = leftXPos - ((leftXPos / 32) + 1) * 32;
 
         // Draw background.
