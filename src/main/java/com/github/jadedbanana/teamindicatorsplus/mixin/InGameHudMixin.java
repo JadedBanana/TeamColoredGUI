@@ -31,7 +31,7 @@ public abstract class InGameHudMixin {
 	@Redirect(method = "renderHotbar", at = @At(value = "INVOKE",
 			target = "Lcom/mojang/blaze3d/systems/RenderSystem;setShaderTexture(ILnet/minecraft/util/Identifier;)V")
 	)
-	private void redirectSetShaderTexture_renderHotbar(int texture, Identifier id) {
+	private void redirectRenderHotbar_SetShaderTexture(int texture, Identifier id) {
 		// Only run this method if the mod is enabled AND the widget recolor is enabled.
 		// If not, just do the normal intended call.
 		if (!TeamIndicatorsPlus.CONFIG.ENABLED) {
