@@ -7,6 +7,8 @@
   "teamindicatorsplus.options.outer.screens": "Screen Options...",
   "teamindicatorsplus.options.outer.world": "World Options...",
   "teamindicatorsplus.options.outer.players": "Player Options...",
+  "teamindicatorsplus.options.enable_all": "Enable All",
+  "teamindicatorsplus.options.disable_all": "Disable All",
   "teamindicatorsplus.options.color.black": "§0Black Team",
   "teamindicatorsplus.options.color.dark_blue": "§1Dark Blue Team",
   "teamindicatorsplus.options.color.dark_green": "§2Dark Green Team",

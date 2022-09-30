@@ -2,7 +2,9 @@ package com.github.jadedbanana.teamindicatorsplus.gui.screens.widgets;
 
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
 import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsUtil;
+import com.github.jadedbanana.teamindicatorsplus.gui.screens.ScrollingColorConfigScreen;
 import com.google.common.collect.ImmutableList;
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Element;
@@ -11,7 +13,7 @@ import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.gui.widget.ElementListWidget;
-import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.*;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -29,18 +31,22 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     /*
     Constructor.
      */
-    public ScrollingColorToggleWidget(MinecraftClient client, Screen parent, int width, int height, ColorToggleEntryType type) {
+    public ScrollingColorToggleWidget(MinecraftClient client, Screen parentScreen, int width,
+                                      int height, ColorToggleEntryType type) {
+        // Call super.
         super(client, width - 40, height, 20, height - 32, 40);
+
+        // Override default attributes.
         this.setLeftPos(40);
+        this.rowWidth = 105 + type.width;
 
         // Copy over attributes.
         ScrollingColorToggleWidget.client = client;
-        this.rowWidth = 105 + type.width;
 
         // Create entries.
         ArrayList<Formatting> formatList = TeamIndicatorsUtil.getColorFormats();
         for (int i = 0; i < formatList.size(); i++)
-            this.addEntry(new ColorToggleEntry(parent, type, formatList.get(i), i));
+            this.addEntry(new ColorToggleEntry(parentScreen, type, formatList.get(i), i));
     }
 
 
@@ -53,6 +59,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     public int getRowWidth() {
         return this.rowWidth;
     }
+    public int getLeft() { return this.left; }
 
 
     /*
@@ -62,6 +69,32 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     public boolean isNarratable() { return false; }
     @Override
     public void appendNarrations(NarrationMessageBuilder builder) {}
+
+
+    /*
+    Render method.
+    Calls the parent method, but also draws a shadow on the left side (at x = ScrollingColorConfigScreen.SIDEBAR_WIDTH).
+     */
+    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
+        // Call super function first.
+        super.render(matrices, mouseX, mouseY, delta);
+
+        // Set up Tesselator, BufferBuilder, and RenderSystem.
+        // Set them to fade.
+        Tessellator tessellator = Tessellator.getInstance();
+        BufferBuilder bufferBuilder = tessellator.getBuffer();
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(GlStateManager.SrcFactor.SRC_ALPHA, GlStateManager.DstFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SrcFactor.ZERO, GlStateManager.DstFactor.ONE);
+        RenderSystem.setShader(GameRenderer::getPositionColorShader);
+
+        // Draw left sidebar's dark fade.
+        bufferBuilder.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR);
+        bufferBuilder.vertex(ScrollingColorConfigScreen.SIDEBAR_WIDTH, this.bottom, 0.0).color(0, 0, 0, 255).next();
+        bufferBuilder.vertex(ScrollingColorConfigScreen.SIDEBAR_WIDTH + 4, this.bottom, 0.0).color(0, 0, 0, 0).next();
+        bufferBuilder.vertex(ScrollingColorConfigScreen.SIDEBAR_WIDTH + 4, this.top, 0.0).color(0, 0, 0, 0).next();
+        bufferBuilder.vertex(ScrollingColorConfigScreen.SIDEBAR_WIDTH, this.top, 0.0).color(0, 0, 0, 255).next();
+        tessellator.draw();
+    }
 
     public static class ColorToggleEntry extends ElementListWidget.Entry<ColorToggleEntry> {
 
@@ -76,7 +109,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
         // Image stuff.
         private final Identifier coloredImage;
         private final Identifier defaultImage;
-        private int offsetX, offsetY, imageW, imageH;
+        private final int offsetX, offsetY, imageW, imageH;
 
         // Enable / disable button.
         private final ButtonWidget enableDisableButton;
