@@ -13,6 +13,8 @@ public class TeamTextureFinder {
     // Colors
     public static int[] COLORS;
     public static Identifier[] WIDGETS;
+    public static Identifier[] ARROWS;
+    public static Identifier[] SPECTRAL_ARROWS;
 
 
     /*
@@ -34,6 +36,12 @@ public class TeamTextureFinder {
             // Widgets
             WIDGETS[i] = new Identifier("teamindicatorsplus",
                     "textures/gui/" + colorFormats.get(i).getName().toLowerCase() + "_widgets.png");
+            // Arrows
+            ARROWS[i] = new Identifier("teamindicatorsplus",
+                    "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_arrow.png");
+            // Spectral Arrows
+            ARROWS[i] = new Identifier("teamindicatorsplus",
+                    "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_spectral_arrow.png");
         }
     }
 
@@ -44,6 +52,24 @@ public class TeamTextureFinder {
      */
     public static Identifier getHotbarTexture(AbstractTeam scoreboardTeam) {
         return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.HOTBAR_ENABLEDS, WIDGETS);
+    }
+
+
+    /*
+    Arrow texture getter.
+    Wrapper for getTexture.
+     */
+    public static Identifier getArrowTexture(AbstractTeam scoreboardTeam) {
+        return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.ARROW_ENABLEDS, ARROWS);
+    }
+
+
+    /*
+    Spectral arrow texture getter.
+    Wrapper for getTexture.
+     */
+    public static Identifier getSpectralArrowTexture(AbstractTeam scoreboardTeam) {
+        return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.SPECTRAL_ARROW_ENABLEDS, SPECTRAL_ARROWS);
     }
 
 
