@@ -14,6 +14,7 @@ public class TeamTextureFinder {
     public static int[] COLORS;
     public static Identifier[] WIDGETS;
     public static Identifier[] ARROWS;
+    public static Identifier[] TIPPED_ARROWS;
     public static Identifier[] SPECTRAL_ARROWS;
 
 
@@ -28,6 +29,9 @@ public class TeamTextureFinder {
         // Set list lengths.
         COLORS = new int[colorFormats.size()];
         WIDGETS = new Identifier[colorFormats.size()];
+        ARROWS = new Identifier[colorFormats.size()];
+        TIPPED_ARROWS = new Identifier[colorFormats.size()];
+        SPECTRAL_ARROWS = new Identifier[colorFormats.size()];
 
         // Iterate through formats and add them to the lists
         for (int i = 0; i < colorFormats.size(); i++) {
@@ -39,6 +43,9 @@ public class TeamTextureFinder {
             // Arrows
             ARROWS[i] = new Identifier("teamindicatorsplus",
                     "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_arrow.png");
+            // Tipped Arrows
+            TIPPED_ARROWS[i] = new Identifier("teamindicatorsplus",
+                    "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_tipped_arrow.png");
             // Spectral Arrows
             ARROWS[i] = new Identifier("teamindicatorsplus",
                     "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_spectral_arrow.png");
@@ -61,6 +68,15 @@ public class TeamTextureFinder {
      */
     public static Identifier getArrowTexture(AbstractTeam scoreboardTeam) {
         return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.ARROW_ENABLEDS, ARROWS);
+    }
+
+
+    /*
+    Tipped arrow texture getter.
+    Wrapper for getTexture.
+     */
+    public static Identifier getTippedArrowTexture(AbstractTeam scoreboardTeam) {
+        return getTexture(scoreboardTeam, TeamIndicatorsPlus.CONFIG.TIPPED_ARROW_ENABLEDS, TIPPED_ARROWS);
     }
 
 

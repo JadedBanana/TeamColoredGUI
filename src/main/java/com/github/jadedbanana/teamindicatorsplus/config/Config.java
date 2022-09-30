@@ -12,6 +12,7 @@ public class Config {
     // Item enabled lists
     public boolean[] HOTBAR_ENABLEDS = TeamIndicatorsUtil.getDefaultTogglesState(true);
     public boolean[] ARROW_ENABLEDS = TeamIndicatorsUtil.getDefaultTogglesState(false);
+    public boolean[] TIPPED_ARROW_ENABLEDS = TeamIndicatorsUtil.getDefaultTogglesState(false);
     public boolean[] SPECTRAL_ARROW_ENABLEDS = TeamIndicatorsUtil.getDefaultTogglesState(false);
 
 }
