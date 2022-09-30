@@ -16,7 +16,6 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,22 +53,6 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     public int getRowWidth() {
         return this.rowWidth;
     }
-
-    @Override
-    public void mouseMoved(double mouseX, double mouseY) {
-        super.mouseMoved(mouseX, mouseY);
-    }
-
-    @Override
-    public boolean keyReleased(int keyCode, int scanCode, int modifiers) { return super.keyReleased(keyCode, scanCode, modifiers); }
-    @Override
-    public boolean charTyped(char chr, int modifiers) { return super.charTyped(chr, modifiers); }
-    @Override
-    public void setInitialFocus(@Nullable Element element) { super.setInitialFocus(element); }
-    @Override
-    public void focusOn(@Nullable Element element) { super.focusOn(element); }
-    @Override
-    public boolean changeFocus(boolean lookForwards) { return super.changeFocus(lookForwards); }
 
 
     /*
