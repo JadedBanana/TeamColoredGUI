@@ -1,7 +1,5 @@
 package com.github.jadedbanana.teamindicatorsplus;
 
-import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsPlus;
-import com.github.jadedbanana.teamindicatorsplus.TeamIndicatorsUtil;
 import net.minecraft.scoreboard.AbstractTeam;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Formatting;
@@ -47,7 +45,7 @@ public class TeamTextureFinder {
             TIPPED_ARROWS[i] = new Identifier("teamindicatorsplus",
                     "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_tipped_arrow.png");
             // Spectral Arrows
-            ARROWS[i] = new Identifier("teamindicatorsplus",
+            SPECTRAL_ARROWS[i] = new Identifier("teamindicatorsplus",
                     "textures/entity/projectiles/" + colorFormats.get(i).getName().toLowerCase() + "_spectral_arrow.png");
         }
     }
