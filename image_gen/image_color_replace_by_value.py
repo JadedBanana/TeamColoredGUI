@@ -62,7 +62,7 @@ def image_color_replace_by_value(img, color_max, color_min, color_max_distance, 
 
 
 if __name__ == '__main__':
-    img = Image.open(sys.argv[1])
+    img = Image.open(sys.argv[1]).convert('RGBA')
 
     color_max = eval(sys.argv[2])
     color_min = eval(sys.argv[3])
