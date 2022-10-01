@@ -64,16 +64,8 @@ public class OuterConfigMenuScreen extends Screen {
         // World button
         this.addDrawableChild(new ButtonWidget(
             this.width / 2 - 155, this.height / 6 + 68, 150, 20,
-            Text.translatable("teamindicatorsplus.options.outer.world"), (button) -> {
-                // TODO: add world options menu
-            }
-        ));
-
-        // Players button
-        this.addDrawableChild(new ButtonWidget(
-            this.width / 2 + 5, this.height / 6 + 68, 150, 20,
-            Text.translatable("teamindicatorsplus.options.outer.players"), (button) -> {
-                // TODO: add player options menu
+            Text.translatable("teamindicatorsplus.options.outer.projectiles"), (button) -> {
+                this.client.setScreen(new ProjectileConfigMenuScreen(this));
             }
         ));
 
