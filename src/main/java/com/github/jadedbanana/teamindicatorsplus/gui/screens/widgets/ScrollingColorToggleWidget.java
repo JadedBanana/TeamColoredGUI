@@ -34,7 +34,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
     public ScrollingColorToggleWidget(MinecraftClient client, Screen parentScreen, int width,
                                       int height, ColorToggleEntryType type) {
         // Call super.
-        super(client, width - 40, height, 20, height - 32, 40);
+        super(client, width - 40, height, 20, height - 32, Math.max(type.height + 18, 38));
 
         // Override default attributes.
         this.setLeftPos(40);
@@ -206,7 +206,7 @@ public class ScrollingColorToggleWidget extends ElementListWidget<ScrollingColor
 
             // Draw button.
             this.enableDisableButton.x = x + entryWidth - 100;
-            this.enableDisableButton.y = y + 15;
+            this.enableDisableButton.y = y + 15 + (imageH > 20 ? (imageH - 20) / 2 : 0);
             this.enableDisableButton.render(matrices, mouseX, mouseY, tickDelta);
         }
 
