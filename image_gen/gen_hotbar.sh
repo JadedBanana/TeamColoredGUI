@@ -1,9 +1,12 @@
 # Function to merge the generated images together.
 merge_images() {
-	composite -compose over -alpha On hotbar/inside_post.png hotbar/border.png ../src/main/resources/assets/teamcoloredgui/textures/gui/$1_widgets.png
-	composite -compose over -alpha On ../src/main/resources/assets/teamcoloredgui/textures/gui/$1_widgets.png hotbar/bg.png ../src/main/resources/assets/teamcoloredgui/textures/gui/$1_widgets.png
-	composite -compose over -alpha On ../src/main/resources/assets/teamcoloredgui/textures/gui/$1_widgets.png hotbar/selector.png ../src/main/resources/assets/teamcoloredgui/textures/gui/$1_widgets.png
+	composite -compose over -alpha On hotbar/inside_post.png hotbar/border.png ../src/main/resources/assets/teamindicatorsplus/textures/gui/$1_widgets.png
+	composite -compose over -alpha On ../src/main/resources/assets/teamindicatorsplus/textures/gui/$1_widgets.png hotbar/bg.png ../src/main/resources/assets/teamindicatorsplus/textures/gui/$1_widgets.png
+	composite -compose over -alpha On ../src/main/resources/assets/teamindicatorsplus/textures/gui/$1_widgets.png hotbar/selector.png ../src/main/resources/assets/teamindicatorsplus/textures/gui/$1_widgets.png
 }
+
+# Set -e so if errors occur we're fine
+set -e
 
 # black
 echo -e "Generating BLACK hotbar image..."
