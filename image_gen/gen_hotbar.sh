@@ -14,7 +14,7 @@ LOW_FACTOR=0
 
 # black
 echo -e "Generating BLACK hotbar image..."
-python3 image_color_replace_by_value.py hotbar/inside.png "(41,41,41)" "(10,10,10)" $HIGH_FACTOR $LOW_FACTOR
+python3 image_color_replace_by_value.py hotbar/inside.png "(32,32,32)" "(8,8,8)" $HIGH_FACTOR $LOW_FACTOR
 merge_images black
 
 # dark blue
