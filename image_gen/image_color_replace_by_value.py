@@ -39,7 +39,7 @@ def image_color_replace_by_value(img, color_max, color_min, color_max_distance, 
 
     # Go through each color and assign it a NEW color in hsv
     for c in colors_list:
-        value_factor = (c[0][2] - v_min) / v_diff
+        value_factor = (c[1][2] - v_min) / v_diff
         c_hsv = (
             min(max(h_b + h_m * value_factor, 0), 255),
             min(max(s_b + s_m * value_factor, 0), 255),
