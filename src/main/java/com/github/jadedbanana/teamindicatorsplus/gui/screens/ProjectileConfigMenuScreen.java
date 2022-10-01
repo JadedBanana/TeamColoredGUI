@@ -24,7 +24,8 @@ public class ProjectileConfigMenuScreen extends ScrollingColorConfigScreen {
         // Add the Color toggles
         super.init(new ColorToggleEntryType[]{
                 ColorToggleEntryType.ARROW,
-                ColorToggleEntryType.TIPPED_ARROW
+                ColorToggleEntryType.TIPPED_ARROW,
+                ColorToggleEntryType.SPECTRAL_ARROW
         });
     }
 
